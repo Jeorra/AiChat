@@ -1,0 +1,347 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0;
+}
+
+.chatbot-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 400px;
+  background-color: #f4f4f4;
+  box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  /* İçerikleri dikey olarak sırala */
+  align-items: stretch;
+  overflow: hidden;
+  /* Ana konteynerde kaydırma çubuğu gösterme */
+  z-index: 999;
+}
+
+.header {
+  background: linear-gradient(135deg, #2c3e50, #34495e);
+  color: white;
+  padding: 25px;
+  text-align: center;
+  flex-shrink: 0;
+  /* Başlığın küçülmesini engeller */
+}
+
+.header h1 {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.header p {
+  opacity: 0.9;
+  font-size: 14px;
+}
+
+/* Soru-Cevap bölümlerini ve sohbet geçmişini saran kaydırılabilir alan */
+.scrollable-content-area {
+  flex-grow: 1;
+  /* Mevcut alanı doldurur */
+  padding: 20px;
+  /* İç boşluk */
+  overflow-y: auto;
+  /* Kendi içinde kaydırma çubuğu sağlar */
+  display: flex;
+  /* İçerikleri düzenlemek için flexbox kullan */
+  flex-direction: column;
+  /* İçerikleri dikey sırala */
+  gap: 15px;
+  /* Alt elemanlar arası boşluk */
+}
+
+/* Her bir sayfa bölümü (main, questions, answer) için genel stil */
+.page-section {
+  flex-shrink: 0;
+  /* Sayfaların küçülmesini engeller */
+}
+
+.keywords-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+  padding: 10px;
+  border: 2px dashed #e0e0e0;
+  border-radius: 10px;
+}
+
+.keyword-tag {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.keyword-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #2980b9, #3498db);
+}
+
+.chat-area {
+  /* Bu stil sadece mevcut soru/cevap ekranları için kullanılmalı */
+  background: #f8f9fa;
+  border-radius: 15px;
+  padding: 20px;
+  margin: 20px 0;
+  min-height: 300px;
+  border: 1px solid #e9ecef;
+}
+
+.question-section {
+  background: #e3f2fd;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  border-left: 4px solid #2196f3;
+}
+
+.question-section h3 {
+  color: #1976d2;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.answer-section {
+  background: #f1f8e9;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  border-left: 4px solid #4caf50;
+}
+
+.answer-section h4 {
+  color: #388e3c;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.answer-text {
+  line-height: 1.6;
+  color: #2e7d32;
+}
+
+.satisfaction-check {
+  background: #fff3e0;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  border-left: 4px solid #ff9800;
+}
+
+.satisfaction-buttons {
+  margin-top: 15px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #4caf50, #45a049);
+  color: white;
+}
+
+.btn-success:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(76, 175, 80, 0.3);
+}
+
+.btn-warning {
+  background: linear-gradient(135deg, #ff9800, #f57c00);
+  color: white;
+}
+
+.btn-warning:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(255, 152, 0, 0.3);
+}
+
+.btn-reset {
+  background: linear-gradient(135deg, #6c757d, #5a6268);
+  color: white;
+  margin-top: 15px;
+}
+
+.btn-reset:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(108, 117, 125, 0.3);
+}
+
+.welcome-message {
+  text-align: center;
+  color: #666;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.category-questions {
+  margin-top: 15px;
+}
+
+.question-item {
+  background: white;
+  padding: 12px 15px;
+  margin: 8px 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.question-item:hover {
+  background: #f0f7ff;
+  transform: translateX(5px);
+  border-color: #2196f3;
+}
+
+.back-button {
+  background: linear-gradient(135deg, #607d8b, #546e7a);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-bottom: 15px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(96, 125, 139, 0.3);
+}
+
+/* Entegre Sohbet Geçmişi Stilleri (Yeni) */
+.integrated-chat-history {
+  padding-top: 0;
+  /* Üstten boşluk vermeye gerek yok, scrollable-content-area'dan alıyor */
+  padding-bottom: 15px;
+  /* Input'tan önce boşluk */
+  /* background-color: #ffffff; */
+  /* Scrollable-content-area zaten beyaz */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Entegre Sohbet Girişi Stilleri - Her Zaman Görünür */
+.integrated-chat-input {
+  flex-shrink: 0;
+  /* Input alanı sıkışmasın */
+  display: flex;
+  padding: 15px;
+  border-top: 1px solid #eee;
+  background-color: #f8f9fa;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+  /* Üste doğru hafif gölge */
+}
+
+.integrated-chat-input input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.integrated-chat-input button {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.integrated-chat-input button:hover {
+  background: linear-gradient(135deg, #2980b9, #3498db);
+}
+
+/* Mesaj baloncukları */
+.chat-message-user {
+  align-self: flex-end;
+  background-color: #DCF8C6;
+  padding: 8px 12px;
+  border-radius: 15px;
+  max-width: 80%;
+  word-break: break-word;
+}
+
+.chat-message-assistant {
+  align-self: flex-start;
+  background-color: #F1F0F0;
+  padding: 8px 12px;
+  border-radius: 15px;
+  max-width: 80%;
+  word-break: break-word;
+}
+
+
+/* Küçük ekranlar için medya sorgusu */
+@media (max-width: 768px) {
+  .chatbot-container {
+    position: static;
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    margin: 20px auto;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  body {
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 20px;
+  }
+
+  /* Ana içerik alanının padding'i zaten 20px, ek ayara gerek yok */
+  /* .main-content-area {
+    padding: 20px;
+  } */
+
+  .satisfaction-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    width: 200px;
+  }
+}
